@@ -6,6 +6,9 @@ def chess_move():
     global board
     board.push(move)
     print(board)
+   # if board.is_checkmate():
+   #elif board.is_stalemate():
+#board.is_check():
     
 def start():
     global board
