@@ -1,3 +1,4 @@
+from optparse import check_choice
 import chess
 
 base_board = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'
@@ -13,6 +14,19 @@ def start():
     print(board)
     move_choice()
     
+def get_promotion_piece():
+    choice = input("Choose the piece to promote (Q/R/N/B)")
+    if choice in ['Q','R','N','B']:
+        match choice:
+            case 'Q': 
+                return chess.QUEEN
+            case 'R': 
+                return chess.ROOK
+            case 'N': 
+                return chess.KNIGHT
+            case 'B': 
+                return chess.BISHOP
+    
 def move_choice():
     global move
     starting_square = input('What sqaure are you moving from? ')
@@ -22,6 +36,7 @@ def move_choice():
     
     if (ending_square == 'reset'):
         start()
+        
     else:
         desired_move = chess.Move.from_uci(starting_square + ending_square)
         if (board.is_legal(desired_move) == True):
